@@ -56,10 +56,11 @@ function create_ISI_histogram(nodes::UInt32,times::Float32)
     global_isis,spikes_ragged
 end
 (nodes,times,whole_duration) = convert_bool_matrice_to_ts(read_spike_dense,frame_width)
-
 global_isis,spikes_ragged = create_ISI_histogram(nodes,times)
 
-
+"""
+Visualize one epoch, as a spike train raster and then an ISI histogram.
+"""
 Plots.scatter(times,nodes,legend = false,markersize = 0.8,markerstrokewidth=0,alpha=0.8, bgcolor=:snow2, fontcolor=:blue,xlabel="time (Seconds)",ylabel="Cell Id")
 savefig("scatter_plot.png")
 b_range = range(minimum(global_isis), mean(global_isis)+var(global_isis), length=21)
