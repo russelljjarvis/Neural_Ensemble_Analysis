@@ -19,7 +19,7 @@ function convert_bool_matrice_to_ts(spikes,frame_width)
                 push!(times,indx*frame_width)                
             end
         end
-	end
+    end
     whole_duration = length(spikes[1,:])*frame_width
     (nodes,times,whole_duration)
 end
