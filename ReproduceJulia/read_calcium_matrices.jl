@@ -1,6 +1,9 @@
 using Plots
 using MAT
 using StatsBase
+"""
+Of course the absolute paths below will need to be wrangled to match your directory tree.
+"""
 read_spike_dense = matread("../data2/M1_d1A_S.mat")["GC06_M1963_20191204_S1"]["Transients"]["Raster"]
 FPS = matread("../data2/M1_d1A_S.mat")["GC06_M1963_20191204_S1"]["Movie"]["FPS"]
 frame_width = 1.0/FPS #0.08099986230023408 #second, sample_rate =  12.3457#Hz
