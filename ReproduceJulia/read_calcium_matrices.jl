@@ -28,7 +28,7 @@ end
 """
 A method to get collect the Inter Spike Intervals (ISIs) per neuron, and then to collect them together to get the ISI distribution for the whole cell population
 """
-function create_ISI_histogram(nodes,spikes)
+function create_ISI_histogram(nodes)
     spikes = []
     global_isis =Float32[]
     isi_s = Float32[]
@@ -36,7 +36,7 @@ function create_ISI_histogram(nodes,spikes)
     @inbounds for n in 1:numb_neurons
         push!(spikes,[])
     end
-    @inbounds for (i, _) in enumerate(spikes)
+    @inbounds for i in 1:numb_neurons
         for (n,t) in zip(nodes,times)
             if i==n
                 push!(spikes[i],t)
@@ -56,7 +56,7 @@ function create_ISI_histogram(nodes,spikes)
     global_isis
 end
 
-global_isis = create_ISI_histogram(nodes,spikes)
+global_isis = create_ISI_histogram(nodes)
 Plots.scatter(times,nodes,legend = false,markersize = 0.8,markerstrokewidth=0,alpha=0.8, bgcolor=:snow2, fontcolor=:blue,xlabel="time (Seconds)",ylabel="Cell Id")
 savefig("scatter_plot.png")
 b_range = range(minimum(global_isis), mean(global_isis)+var(global_isis), length=21)
