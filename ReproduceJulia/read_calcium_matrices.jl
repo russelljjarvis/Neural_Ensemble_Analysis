@@ -4,6 +4,11 @@ using StatsBase
 spikes = matread("../data2/M1_d1A_S.mat")["GC06_M1963_20191204_S1"]["Transients"]["Raster"]
 FPS = matread("../data2/M1_d1A_S.mat")["GC06_M1963_20191204_S1"]["Movie"]["FPS"]
 frame_width = 1.0/FPS #0.08099986230023408 #second, sample_rate =  12.3457#Hz
+
+"""
+A method to re-represent dense boolean vectors as a ragged array of spike trains. 
+spikes is a matrix with regularly sampled windows, populated by spikes, with calcium spikes.
+"""
 function convert_bool_matrice_to_ts(spikes,frame_width)
     nodes = UInt32[]
     times = Float32[]
