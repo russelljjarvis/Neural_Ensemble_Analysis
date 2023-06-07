@@ -50,13 +50,13 @@ function create_ISI_histogram(nodes::Vector{UInt32},times::Vector{Float32})
         push!(isi_s,[])
         for (ind,x) in enumerate(times)
             if ind>1
-                isi_current = x-times[ind-1]
+                isi_current = x-times[ind-1] # subtract the previous spike time from the current spike time, to get the current ISI.
                 push!(isi_s[i],isi_current)
             end
         end
         append!(global_isis,isi_s[i])
     end
-    (global_isis,spikes_ragged)
+    (global_isis:: Vector{Float32},spikes_ragged::Vector{Any})
 end
 (nodes,times,whole_duration) = convert_bool_matrice_to_ts(read_spike_dense,frame_width)
 global_isis,spikes_ragged = create_ISI_histogram(nodes,times)
@@ -72,3 +72,4 @@ p2 = Plots.plot()
 Plots.histogram!(p2,global_isis, bins=b_range, normalize=:pdf, color=:gray,xlim=[0.0,mean(global_isis)+std(global_isis)])
 Plots.plot(p1,p2)
 savefig("Spike_raster_and_ISI_bar_plot.png")
+
