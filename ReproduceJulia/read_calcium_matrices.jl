@@ -33,7 +33,7 @@ Also output a ragged array (Array of unequal length array) of spike trains.
 """
 function create_ISI_histogram(nodes::UInt32,times::Float32)
     spikes_ragged = []
-    global_isis =Float32[]
+    global_isis =Float32[] # the total lumped population ISI distribution.
     isi_s = Float32[]
     numb_neurons=Int(maximum(nodes))+1 # Julia doesn't index at 0.
     @inbounds for n in 1:numb_neurons
