@@ -9,7 +9,7 @@ FPS = matread("../datasets/M1_d1A_S.mat")["GC06_M1963_20191204_S1"]["Movie"]["FP
 frame_width = 1.0/FPS #0.08099986230023408 #second, sample_rate =  12.3457#Hz
 
 """
-A method to re-represent dense boolean vectors as a two dense vectors of spikes, and times.
+A method to re-represent dense boolean matrix of calcium spike data as a two dense vectors of spikes, and times.
 spikes is a matrix with regularly sampled windows, populated by spikes, with calcium spikes.
 """
 function convert_bool_matrice_to_ts(read_spike_dense::Matrix{Bool}, frame_width::Real)
